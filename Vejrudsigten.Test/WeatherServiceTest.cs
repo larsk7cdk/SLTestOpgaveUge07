@@ -79,7 +79,7 @@ public class WeatherServiceTest
 
 
     [Fact]
-    public async Task Gyldig_vejrmelding_indeholder_by_og_vejrtype_og_temperatur_for_idag_og_dagen_foer()
+    public async Task Vejrmelding_som_indeholder_by_og_vejrtype_og_temperatur_for_idag_og_dagen_foer_er_gyldig()
     {
         // Arrange 
         const string key = "key";
@@ -105,9 +105,9 @@ public class WeatherServiceTest
 
 
     [Theory]
-    [InlineData(@"Vejret i {0} er {1} og der er {2} grader. I går var det {3} og {4} grader", "Kolding", "Klart vejr", 20.4, "Skyet", 18.2)]
-    [InlineData(@"Vejret i {0} er {1} og der er {2} grader. I går var det {3} og {4} grader", "Hvidovre", "Klart vejr", 20.4, "Skyet", 18.2)]
-    public async Task Gyldig_anvender_angivet_vejrmelding_indeholder_by_og_vejrtype_og_temperatur_for_idag_og_dagen_foer(
+    [InlineData(@"Vejret i {0} er {1} og der er {2} grader. I går var det {3} og {4} grader, så det er bare om at komme til stranden", "Kolding","Klart vejr", 25.3, "Skyet", 19.8)]
+    [InlineData(@"Vejret i {0} er {1} med {2} grader. I går {3} og {4} grader, så folk med solceller er glade", "Hvidovre", "Klart vejr", 20.4, "Klart vejr", 23.1)]
+    public async Task Anvender_angiver_vejrmelding_som_indeholder_by_og_vejrtype_og_temperatur_for_idag_og_dagen_foer_er_gyldig(
         string message,
         string location,
         string conditionsToday,
