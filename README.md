@@ -1,1 +1,3 @@
-# SLTestOpgaveUge07
+# Vejrudsigten
+
+Afleveringsopgave uge 7 i faget Test.
