@@ -77,7 +77,6 @@ public class WeatherServiceTest
         actual.Should().BeOfType<ArgumentException>();
     }
 
-
     [Fact]
     public async Task Vejrmelding_som_indeholder_by_og_vejrtype_og_temperatur_for_idag_og_dagen_foer_er_gyldig()
     {
@@ -96,37 +95,40 @@ public class WeatherServiceTest
         var actual = await sut.GetForecastAsync(key, location);
 
         // Assert
-        actual.Should().Contain(location);
-        actual.Should().Contain(conditionsToday);
-        actual.Should().Contain(tempToday.ToString(CultureInfo.CurrentCulture));
-        actual.Should().Contain(conditionsYesterday);
-        actual.Should().Contain(tempYesterday.ToString(CultureInfo.CurrentCulture));
+        actual.Forecast.Should().Contain(location);
+        actual.Forecast.Should().Contain(conditionsToday);
+        actual.Forecast.Should().Contain(tempToday.ToString(CultureInfo.CurrentCulture));
+        actual.Forecast.Should().Contain(conditionsYesterday);
+        actual.Forecast.Should().Contain(tempYesterday.ToString(CultureInfo.CurrentCulture));
     }
 
-
     [Theory]
-    [InlineData(@"Vejret i {0} er {1} og der er {2} grader. I går var det {3} og {4} grader, så det er bare om at komme til stranden", "Kolding","Klart vejr", 25.3, "Skyet", 19.8)]
-    [InlineData(@"Vejret i {0} er {1} med {2} grader. I går {3} og {4} grader, så folk med solceller er glade", "Hvidovre", "Klart vejr", 20.4, "Klart vejr", 23.1)]
-    public async Task Anvender_angiver_vejrmelding_som_indeholder_by_og_vejrtype_og_temperatur_for_idag_og_dagen_foer_er_gyldig(
-        string message,
+    [InlineData("Kolding", "Klart vejr", 5, "Skyet", 7, "Pas på når i cykler, det kan blive glat")]
+    [InlineData("Kolding", "Klart vejr", 15, "Skyet", 7, "Det indbyder til en gåtur")]
+    [InlineData("Kolding", "Klart vejr", 25, "Skyet", 7, "Så det afsted til stranden")]
+    [InlineData("Kolding", "Regn", 15, "Skyet", 7, "Paraplyen skal i brug")]
+    [InlineData("Kolding", "Sne", 5, "Skyet", 7, "Husk vanterne til de små poder, det bliver koldt")]
+    [InlineData("Kolding", "Skyet", 15, "Skyet", 7, "Foråret er på vej")]
+    [InlineData("Kolding", "Skyet", 25, "Skyet", 7, "Solcellerne har ikke de bedste vilkår")]
+    public async Task Vejrmelding_som_indeholder_by_og_vejrtype_og_temperatur_for_idag_og_dagen_foer_viser_en_overskrift(
         string location,
         string conditionsToday,
         double tempToday,
         string conditionsYesterday,
-        double tempYesterday)
+        double tempYesterday,
+        string headline)
     {
         // Arrange 
         const string key = "key";
-        var expected = string.Format(message, location, conditionsToday, tempToday.ToString(CultureInfo.CurrentCulture), conditionsYesterday, tempYesterday.ToString(CultureInfo.CurrentCulture));
 
         var weatherServiceTestDouble = CreateWeatherServiceWithParameters(location, conditionsToday, tempToday, conditionsYesterday, tempYesterday);
         var sut = new WeatherForecast(weatherServiceTestDouble.Object);
 
         // Act
-        var actual = await sut.GetForecastAsync(key, location, message);
+        var actual = await sut.GetForecastAsync(key, location);
 
         // Assert
-        actual.Should().Be(expected);
+        actual.Headline.Should().Be(headline);
     }
 
 

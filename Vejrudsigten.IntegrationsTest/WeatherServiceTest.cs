@@ -22,6 +22,6 @@ public class WeatherServiceTest
         var actual = await sut.GetForecastAsync(key, location);
 
         // Assert
-        actual.Should().Contain(location);
+        actual.Forecast.Should().Contain(location);
     }
 }

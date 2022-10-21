@@ -4,6 +4,5 @@ namespace Vejrudsigten.Services;
 
 public interface IWeatherForecast
 {
-    Task<string> GetForecastAsync(string key, string location);
-    Task<string> GetForecastAsync(string key, string location, string weatherMessage);
+    Task<WeatherForecastInfo> GetForecastAsync(string key, string location);
 }
