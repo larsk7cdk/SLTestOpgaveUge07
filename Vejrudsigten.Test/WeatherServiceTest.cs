@@ -104,12 +104,12 @@ public class WeatherServiceTest
 
     [Theory]
     [InlineData("Kolding", "Klart vejr", 5, "Skyet", 7, "Pas på når i cykler, det kan blive glat")]
-    [InlineData("Kolding", "Klart vejr", 15, "Skyet", 7, "Det indbyder til en gåtur")]
-    [InlineData("Kolding", "Klart vejr", 25, "Skyet", 7, "Så det afsted til stranden")]
-    [InlineData("Kolding", "Regn", 15, "Skyet", 7, "Paraplyen skal i brug")]
+    [InlineData("Kolding", "Klart vejr", 15, "Skyet", 7, "Forårsvejret indbyder til en gåtur")]
+    [InlineData("Kolding", "Klart vejr", 25, "Skyet", 7, "Sommeren er her, kom afsted til stranden")]
+    [InlineData("Kolding", "Regn", 15, "Skyet", 7, "Øv vejr i vente, paraplyen skal i brug")]
     [InlineData("Kolding", "Sne", 5, "Skyet", 7, "Husk vanterne til de små poder, det bliver koldt")]
     [InlineData("Kolding", "Skyet", 15, "Skyet", 7, "Foråret er på vej")]
-    [InlineData("Kolding", "Skyet", 25, "Skyet", 7, "Solcellerne har ikke de bedste vilkår")]
+    [InlineData("Kolding", "Skyet", 25, "Skyet", 7, "Varm dag, men solcellerne har ikke de bedste vilkår")]
     public async Task Vejrmelding_som_indeholder_by_og_vejrtype_og_temperatur_for_idag_og_dagen_foer_viser_en_overskrift(
         string location,
         string conditionsToday,

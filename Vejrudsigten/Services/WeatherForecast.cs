@@ -47,12 +47,12 @@ public class WeatherForecast : IWeatherForecast
         return (weatherInfo.Conditions, weatherInfo.Temperature) switch
         {
             ("Klart vejr", < 10) => "Pas på når i cykler, det kan blive glat",
-            ("Klart vejr", >= 10 and <= 20) => "Det indbyder til en gåtur",
-            ("Klart vejr", > 20) => "Så det afsted til stranden",
-            ("Regn", >= 10 and <= 20) => "Paraplyen skal i brug",
+            ("Klart vejr", >= 10 and <= 20) => "Forårsvejret indbyder til en gåtur",
+            ("Klart vejr", > 20) => "Sommeren er her, kom afsted til stranden",
+            ("Regn", >= 10 and <= 20) => "Øv vejr i vente, paraplyen skal i brug",
             ("Sne", < 10) => "Husk vanterne til de små poder, det bliver koldt",
             ("Skyet", >= 10 and <= 20) => "Foråret er på vej",
-            ("Skyet", > 20) => "Solcellerne har ikke de bedste vilkår",
+            ("Skyet", > 20) => "Varm dag, men solcellerne har ikke de bedste vilkår",
             _ => ""
         };
     }
